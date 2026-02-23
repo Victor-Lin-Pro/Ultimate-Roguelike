@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        uiManger.playerHP = playerCharacter.GetPlayerHealth();
+        uiManger.playerName = playerCharacter.name;
+        uiManger.playerHPValue = playerCharacter.GetPlayerHealth();
+        uiManger.playerMaxHPValue = playerCharacter.GetPlayerMaxHealth();
     }
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI playerHPText;
-    public int playerHP;
+    public int playerHPValue;
+    public int playerMaxHPValue;
+    public string playerName;
 
     private void Start()
     {
@@ -18,7 +20,8 @@ public class UIManager : MonoBehaviour
 
     private void UpdateValue()
     {
-        playerHP = GameManager.Get.playerCharacter.GetPlayerHealth();
-        playerHPText.text = "Player HP : " + playerHP;
+        playerHPValue = GameManager.Get.playerCharacter.GetPlayerHealth();
+        playerMaxHPValue = GameManager.Get.playerCharacter.GetPlayerMaxHealth();
+        playerHPText.text = playerName + " : " + playerHPValue + " / " + playerMaxHPValue;
     }
 }
