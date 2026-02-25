@@ -4,8 +4,8 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI playerHPText;
-    public int playerHPValue;
-    public int playerMaxHPValue;
+    public float playerHPValue;
+    public float playerMaxHPValue;
     public string playerName;
 
     private void Start()

@@ -118,6 +118,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""a693c9a9-84a4-40b3-a8ff-b90dcd096f85"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -197,6 +206,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""TakeDamage"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6da03119-b0d4-4664-b5c9-88ad02151b8a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +228,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Plain_Jump = m_Plain.FindAction("Jump", throwIfNotFound: true);
         m_Plain_Move = m_Plain.FindAction("Move", throwIfNotFound: true);
         m_Plain_TakeDamage = m_Plain.FindAction("TakeDamage", throwIfNotFound: true);
+        m_Plain_Shoot = m_Plain.FindAction("Shoot", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -291,6 +312,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Plain_Jump;
     private readonly InputAction m_Plain_Move;
     private readonly InputAction m_Plain_TakeDamage;
+    private readonly InputAction m_Plain_Shoot;
     /// <summary>
     /// Provides access to input actions defined in input action map "Plain".
     /// </summary>
@@ -314,6 +336,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Plain/TakeDamage".
         /// </summary>
         public InputAction @TakeDamage => m_Wrapper.m_Plain_TakeDamage;
+        /// <summary>
+        /// Provides access to the underlying input action "Plain/Shoot".
+        /// </summary>
+        public InputAction @Shoot => m_Wrapper.m_Plain_Shoot;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -349,6 +375,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @TakeDamage.started += instance.OnTakeDamage;
             @TakeDamage.performed += instance.OnTakeDamage;
             @TakeDamage.canceled += instance.OnTakeDamage;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
         }
 
         /// <summary>
@@ -369,6 +398,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @TakeDamage.started -= instance.OnTakeDamage;
             @TakeDamage.performed -= instance.OnTakeDamage;
             @TakeDamage.canceled -= instance.OnTakeDamage;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
         }
 
         /// <summary>
@@ -430,5 +462,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTakeDamage(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

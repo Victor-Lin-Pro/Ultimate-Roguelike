@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public PlayerCharacter playerCharacter;
     [Header("Player Controller")]
     public PlayerController playerController;
+    [Header("Pool Manager")]
+    public PoolManager poolManager;
 
     #region Static
     public static GameManager Get

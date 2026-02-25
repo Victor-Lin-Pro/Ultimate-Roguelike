@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    [SerializeField] private int playerHealth = 0;
-    [SerializeField] private int playerMaxHealth = 3;
-    [SerializeField] private int playerShield = 0;
+    [Header("Player Stats")]
+    [SerializeField] private float playerHealth = 0f;
+    [SerializeField] private float playerSoul = 0f;
+    [SerializeField] private float playerMaxHeart = 3f;
+    [SerializeField] private float playerLuck = 0f;
 
     /*
     [SerializeField] private bool isPlayerDead = false;
@@ -15,14 +17,9 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private bool isPlayerCanAddShield = false;
     */
 
-    public List<ItemList> items = new List<ItemList>();
-
     private void Start()
     {
-        playerHealth = playerMaxHealth;
-
-        HealingItem healingItem = new HealingItem();
-        items.Add(new ItemList(healingItem, healingItem.ItemName()));
+        
     }
 
     private void Update()
@@ -37,7 +34,7 @@ public class PlayerCharacter : MonoBehaviour
             return false;
         }
 
-        if (playerHealth >= playerMaxHealth)
+        if (playerHealth >= playerMaxHeart)
         {
             return false;
         }
@@ -70,9 +67,9 @@ public class PlayerCharacter : MonoBehaviour
     }
 
     // Getters
-    public int GetPlayerHealth() { return playerHealth; }
-    public int GetPlayerMaxHealth() { return playerMaxHealth; }
+    public float GetPlayerHealth() { return playerHealth; }
+    public float GetPlayerMaxHealth() { return playerMaxHeart; }
 
     // Setters
-    public int SetPlayerHealth(int health) { return playerHealth = health; }
+    public float SetPlayerHealth(float health) { return playerHealth = health; }
 }

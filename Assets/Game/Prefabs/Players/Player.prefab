@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6861976870947358504}
   - component: {fileID: 5527948329236341269}
   - component: {fileID: 2194639977739703119}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6861976870947358504
 MonoBehaviour:
@@ -200,6 +200,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 94ec0e8e-148d-4b9c-84af-1c75a697d350
     m_ActionName: 'Plain/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5527948329236341269}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnTakeDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9b81d3dc-93e2-4ce1-acbb-d4ee7da42a0c
+    m_ActionName: 'Plain/TakeDamage[/Keyboard/h]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5527948329236341269}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPlayerShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a693c9a9-84a4-40b3-a8ff-b90dcd096f85
+    m_ActionName: 'Plain/Shoot[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Plain
@@ -219,6 +251,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
   jumpForce: 8
+  normalTear: {fileID: 5741762830909786188, guid: dc54dc304b74df744ada10432e78ac51, type: 3}
+  tearsSlot: {fileID: 0}
+  shootForce: 10
+  shootRate: 0.2
+  poolSize: 1
+  tearLifetime: 3
+  canExpand: 1
+  maxPoolSize: 100
 --- !u!114 &2194639977739703119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,4 +272,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacter
   playerHealth: 3
-  items: []
+  playerSoul: 0
+  playerMaxHeart: 3
+  playerLuck: 0
