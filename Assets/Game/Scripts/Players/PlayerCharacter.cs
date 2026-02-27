@@ -5,17 +5,18 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    [Header("Player Stats")]
-    [SerializeField] private float playerHealth = 0f;
-    [SerializeField] private float playerSoul = 0f;
-    [SerializeField] private float playerMaxHeart = 3f;
-    [SerializeField] private float playerLuck = 0f;
-
     /*
     [SerializeField] private bool isPlayerDead = false;
     [SerializeField] private bool isPlayerCanHealth = false;
     [SerializeField] private bool isPlayerCanAddShield = false;
     */
+
+    private PlayerStats ps;
+
+    private void Awake()
+    {
+        ps = GameManager.Get.playerStats;
+    }
 
     private void Start()
     {
@@ -34,7 +35,7 @@ public class PlayerCharacter : MonoBehaviour
             return false;
         }
 
-        if (playerHealth >= playerMaxHeart)
+        if (ps.PlayerLifeHeart() >= ps.PlayerMaxHeart())
         {
             return false;
         }
@@ -56,7 +57,7 @@ public class PlayerCharacter : MonoBehaviour
             return false;
         }
 
-        if (playerHealth <= 0)
+        if (ps.PlayerLifeHeart() <= 0)
         {
             return true;
         }
@@ -65,11 +66,4 @@ public class PlayerCharacter : MonoBehaviour
             return false;
         }
     }
-
-    // Getters
-    public float GetPlayerHealth() { return playerHealth; }
-    public float GetPlayerMaxHealth() { return playerMaxHeart; }
-
-    // Setters
-    public float SetPlayerHealth(float health) { return playerHealth = health; }
 }

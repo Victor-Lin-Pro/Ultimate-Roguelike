@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 8f;
 
     [Header("Shooting Settings")]
-    [SerializeField] private GameObject normalTear;
+    [SerializeField] private GameObject tearType;
     [SerializeField] private Transform tearsSlot;
     [SerializeField] public float shootForce = 10f;
     [SerializeField] private float shootRate = 0.2f;
@@ -28,17 +28,19 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
 
     private PoolManager pm;
+    private PlayerStats ps;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         pm = GameManager.Get.poolManager;
-        pm.InitializeTearPool(normalTear, tearsSlot, poolSize);
+        pm.InitializeTearPool(tearType, tearsSlot, poolSize);
+        ps = GameManager.Get.playerStats;
     }
 
     private void Update()
     {
-        if (isShooting && Time.time > lastShootTime + shootRate)
+        if (isShooting && Time.time > lastShootTime + shootRate && GameManager.Get.canControl)
         {
             PlayerShoot();
             lastShootTime = Time.time;
@@ -77,8 +79,8 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed) // Just pressed
         {
-            float playerHP = GameManager.Get.playerCharacter.GetPlayerHealth();
-            GameManager.Get.playerCharacter.SetPlayerHealth(playerHP - 1);
+            float playerHP = ps.PlayerLifeHeart();
+            ps.PlayerLifeHeart(playerHP - 1);
         }
     }
 
@@ -97,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerShoot()
     {
-        GameObject tear = pm.GetInactiveTear(normalTear, tearsSlot, canExpand, maxPoolSize);
+        GameObject tear = pm.GetInactiveTear(tearType, tearsSlot, canExpand, maxPoolSize);
 
         if (tear != null)
         {
